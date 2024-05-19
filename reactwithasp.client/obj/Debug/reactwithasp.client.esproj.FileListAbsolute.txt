@@ -1,0 +1,1 @@
+C:\Users\antho\source\repos\ReactWithASP\reactwithasp.client\obj\Debug\reactwithasp.client.esproj.CoreCompileInputs.cache
