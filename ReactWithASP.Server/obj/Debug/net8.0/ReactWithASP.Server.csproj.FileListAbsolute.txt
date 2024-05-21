@@ -33,3 +33,4 @@ C:\Users\antho\source\repos\ReactWithASP\ReactWithASP.Server\obj\Debug\net8.0\re
 C:\Users\antho\source\repos\ReactWithASP\ReactWithASP.Server\obj\Debug\net8.0\ReactWithASP.Server.pdb
 C:\Users\antho\source\repos\ReactWithASP\ReactWithASP.Server\obj\Debug\net8.0\ReactWithASP.Server.genruntimeconfig.cache
 C:\Users\antho\source\repos\ReactWithASP\ReactWithASP.Server\obj\Debug\net8.0\ref\ReactWithASP.Server.dll
+C:\Users\antho\source\repos\ReactWithASP\ReactWithASP.Server\obj\Debug\net8.0\ReactWithASP.Server.sourcelink.json
