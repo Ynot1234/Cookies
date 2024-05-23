@@ -11,11 +11,7 @@ namespace ReactWithASP.Server.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching", "Testing"
         };
 
-        private static readonly string[] CookieSummaries = new[]
-  {
-            "Crunchy", "Chocolate", "Oatmeal", "Soft", "Sweet", "Warm"
-        };
-
+        
         private readonly ILogger<WeatherForecastController> _logger;
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
@@ -25,17 +21,14 @@ namespace ReactWithASP.Server.Controllers
 
         [HttpGet(Name = "GetWeatherForecast")]
         
-        public IEnumerable<Cookie> Get()
+        public IEnumerable<WeatherForecast> Get()
         {
             
-            return Enumerable.Range(1, 5).Select(index => new Cookie
+            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
-                //Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                //TemperatureC = Random.Shared.Next(-20, 55),
-                //Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                Name = CookieSummaries[Random.Shared.Next(CookieSummaries.Length)]
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
         }

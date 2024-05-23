@@ -11,16 +11,23 @@ function AppCookie() {
     const contents = cookies === undefined
         ? <p><em>Loading... Please refresh once the ASP.NET backend has started. </em></p>
         : <table className="table table-striped" aria-labelledby="tabelLabel">
+
             <thead>
                 <tr>
+                    <th>Id</th>
+                    <th>Desc</th>
                     <th>Name</th>
+                    <th>Price</th>
                 </tr>
             </thead>
             <tbody>
                 {cookies.map(cookie =>
-                    <tr key={cookie.name}>
+                    <tr key={cookie.Id}>
+                        <td>{cookie.Id}</td>
+                        <td>{cookie.desc}</td>
                         <td>{cookie.name}</td>
-                       
+                        <td>{cookie.price}</td>
+
                     </tr>
                 )}
             </tbody>
@@ -28,7 +35,7 @@ function AppCookie() {
    
     return (
         <div>
-            <h1 id="tabelLabel">Cookie</h1>
+            <h1 id="tabelLabel">AppCookie</h1>
            {/* <p>This component demonstrates fetching data from the server.</p>*/}
             {contents}
         </div>

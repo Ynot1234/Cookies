@@ -22,13 +22,18 @@ namespace ReactWithASP.Server.Controllers
 
         public IEnumerable<Cookie> Get()
         {
+            List<Cookie> cookies = new List<Cookie>();
 
-            return Enumerable.Range(1, 5).Select(index => new Cookie
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                Name = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+        //    cookies.Add(new Cookie() { Desc = "test", Id = Guid.NewGuid().ToString(),Name = "Chocolate Chip", Price=2.99});
+            cookies.Add(new Cookie() { Desc = "test", Id = "5", Name = "Chocolate Chip", Price = 2.99 });
+            return cookies;
+            //return Enumerable.Range(1, 5).Select(index => new Cookie
+            //{
+            //    //Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+            //    Id = new Guid(),
+            //    Name = Summaries[0]
+            //})
+            //.ToArray();
         }
     }
 }
