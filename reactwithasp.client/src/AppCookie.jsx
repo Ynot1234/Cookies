@@ -22,8 +22,8 @@ function AppCookie() {
             </thead>
             <tbody>
                 {cookies.map(cookie =>
-                    <tr key={cookie.Id}>
-                        <td>{cookie.Id}</td>
+                    <tr key={cookie.id}>
+                        <td>{cookie.id}</td>
                         <td>{cookie.desc}</td>
                         <td>{cookie.name}</td>
                         <td>{cookie.price}</td>
