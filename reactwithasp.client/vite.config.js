@@ -50,6 +50,10 @@ export default defineConfig({
             '^/cookie': {
                 target,
                 secure: false
+            },
+            '^/submitcookie': {
+                target,
+                secure: false
             }
         },
         port: 5173,

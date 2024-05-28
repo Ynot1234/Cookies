@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom/client'
 import AppCookie from './AppCookie.jsx'
 import './index.css'
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-        <AppCookie/>
+        <AppCookie />
   </React.StrictMode>,
 )

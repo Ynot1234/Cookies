@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-
+import CookieSubmit from './CookieSubmit'
 function AppCookie() {
     const [cookies, setCookies] = useState();
 
@@ -14,7 +14,7 @@ function AppCookie() {
 
             <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>Date</th>
                     <th>Desc</th>
                     <th>Name</th>
                     <th>Price</th>
@@ -22,8 +22,8 @@ function AppCookie() {
             </thead>
             <tbody>
                 {cookies.map(cookie =>
-                    <tr key={cookie.id}>
-                        <td>{cookie.id}</td>
+                    <tr key={cookie.date}>
+                        <td>{cookie.date}</td>
                         <td>{cookie.desc}</td>
                         <td>{cookie.name}</td>
                         <td>{cookie.price}</td>
@@ -32,20 +32,25 @@ function AppCookie() {
                 )}
             </tbody>
         </table>;
-   
+
+  
     return (
         <div>
             <h1 id="tabelLabel">AppCookie</h1>
-           {/* <p>This component demonstrates fetching data from the server.</p>*/}
-            {contents}
+             {contents}
+            <CookieSubmit setCookies={setCookies} />
         </div>
     );
 
     async function populateCookieData() {
         const response = await fetch('cookie');
         const data = await response.json();
+        console.log("data", data)
         setCookies(data);
     }
 }
+
+
+
 
 export default AppCookie;
