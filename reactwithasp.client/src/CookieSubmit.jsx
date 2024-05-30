@@ -30,8 +30,8 @@ function CookieSubmit({ setCookies }) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" name="name"  onChange={handleInput} />
-            <input type="text" name="desc"  onChange={handleInput} />
+            <input type="text" name="name" placeholder="Name"  onChange={handleInput} />
+            <input type="text" name="desc" placeholder="Desc" onChange={handleInput} />
             <button type="submit">Submit</button>
         </form>
     );
