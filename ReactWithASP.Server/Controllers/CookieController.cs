@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Components.Server;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using System.Text.Json.Nodes;
 
 namespace ReactWithASP.Server.Controllers
 {
@@ -14,11 +17,10 @@ namespace ReactWithASP.Server.Controllers
         }
 
 
-        [HttpGet(Name = "SubmittedData")]
-        public IEnumerable<Cookie> SubmittedData([FromForm] string Name)
+        [HttpPost(Name = "")]
+        public IEnumerable<Cookie> Post([FromBody] Cookie data)
 
         {
-         //   var x = Desc;
             IEnumerable<Cookie> retval = Tools.Load();
 
 
@@ -26,12 +28,16 @@ namespace ReactWithASP.Server.Controllers
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(retval.Count() + 1)),
                 Id = new Guid(),
-                Name = "Lime",
-                Desc = "Yuck",
+                name = data.name,
+                desc = data.desc,
                 Price = 2.99
             };
 
-            return retval.Append(SubmittedCookie).ToArray();
+        //    retval = retval.Append(SubmittedCookie);
+        //    retval = retval.ToArray();
+        //    return retval;
+
+           return retval.Append(SubmittedCookie).ToArray();
         }
 
 

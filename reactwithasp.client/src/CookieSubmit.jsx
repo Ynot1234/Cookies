@@ -1,49 +1,37 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import axios from 'axios'
-
-
-async function SendCookieData(el) {
-    const response = await fetch('cookie',
-        {
-          method: "GET",
-            body: JSON.stringify(el),
-            headers: {
-             "Content-Type": "application/json",
-            },
-          
-        });
-    const NewCookieTable = await response.json();
-    return NewCookieTable;
-}
-
-
 
 
 //eslint-disable-next-line react/prop-types
 function CookieSubmit({ setCookies }) {
-    const [Name, setName] = useState('');
-    const [Desc, setDesc] = useState('');
 
-    const handleName = (event) => {
-        setName(event.target.value);
+    const [post, setPost] = useState({
+        name: '',
+        desc:''
+    })
+
+    const handleInput = (event) => {
+        setPost({ ...post, [event.target.name]: event.target.value })
     }
 
-    const handleDesc = (event) => {
-        setDesc(event.target.value);
-    }
-
-    const handleSubmit =async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = await  SendCookieData({ Name, Desc });
-        setCookies(data)
-        return data;
 
+        const response =    await axios({
+            method: 'post',
+            url: '/cookie',
+            headers: { 'Content-Type': 'application/json' },
+            data: post,
+            dataType: 'json'
+        });
+
+        setCookies(response.data)
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <input id="Name" label="Name" type="text" value={Name} onChange={handleName} />
-            <input id="Desc" label="Desc" type="text" value={Desc} onChange={handleDesc} />
+            <input type="text" name="name"  onChange={handleInput} />
+            <input type="text" name="desc"  onChange={handleInput} />
             <button type="submit">Submit</button>
         </form>
     );

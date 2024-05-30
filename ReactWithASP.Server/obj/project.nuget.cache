@@ -1,13 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "RNd0m0xObjCLY3ehE6G1lJFQLv/v2cCU5glNPfsEKR2VPr0vG+5n01aN8N3TwDhtK8QHIff9B8qM8YVzjIXRAg==",
+  "dgSpecHash": "1XmIHGEtTb/eAHnxQ9RsN27Gy+EBKSn9YjbYVmYbjnPQdH8bKQeriPfV6s358+3mQU1h5ZYkdoHPpgCFK4P4tQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\antho\\source\\repos\\ReactWithASP\\ReactWithASP.Server\\ReactWithASP.Server.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\antho\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.5\\microsoft.aspnetcore.spaproxy.8.0.5.nupkg.sha512",
+    "C:\\Users\\antho\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.6\\microsoft.aspnetcore.spaproxy.8.0.6.nupkg.sha512",
     "C:\\Users\\antho\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\antho\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\antho\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.6\\microsoft.visualstudio.azure.containers.tools.targets.1.19.6.nupkg.sha512",
+    "C:\\Users\\antho\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\antho\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\antho\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\antho\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

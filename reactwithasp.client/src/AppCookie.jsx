@@ -15,8 +15,8 @@ function AppCookie() {
             <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Desc</th>
                     <th>Name</th>
+                    <th>Desc</th>
                     <th>Price</th>
                 </tr>
             </thead>
@@ -24,8 +24,8 @@ function AppCookie() {
                 {cookies.map(cookie =>
                     <tr key={cookie.date}>
                         <td>{cookie.date}</td>
-                        <td>{cookie.desc}</td>
                         <td>{cookie.name}</td>
+                        <td>{cookie.desc}</td>
                         <td>{cookie.price}</td>
 
                     </tr>
@@ -37,7 +37,7 @@ function AppCookie() {
     return (
         <div>
             <h1 id="tabelLabel">AppCookie</h1>
-             {contents}
+            {contents}
             <CookieSubmit setCookies={setCookies} />
         </div>
     );
@@ -45,7 +45,6 @@ function AppCookie() {
     async function populateCookieData() {
         const response = await fetch('cookie');
         const data = await response.json();
-        console.log("data", data)
         setCookies(data);
     }
 }

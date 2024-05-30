@@ -17,8 +17,8 @@
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                 Id = new Guid(),
-                Name = Summaries[Random.Shared.Next(Summaries.Length)],
-                Desc = "sweet",
+                name = Summaries[Random.Shared.Next(Summaries.Length)],
+                desc = "sweet",
                 Price = 1.99
             })
            .ToArray();
