@@ -18,7 +18,7 @@ namespace ReactWithASP.Server.Controllers
 
 
         [HttpPost(Name = "")]
-        public IEnumerable<Cookie> Post([FromBody] Cookie data)
+        public IEnumerable<Cookie> PostCookie([FromBody] Cookie data)
 
         {
             IEnumerable<Cookie> retval = Tools.Load();
@@ -32,10 +32,6 @@ namespace ReactWithASP.Server.Controllers
                 desc = data.desc,
                 Price = 2.99
             };
-
-        //    retval = retval.Append(SubmittedCookie);
-        //    retval = retval.ToArray();
-        //    return retval;
 
            return retval.Append(SubmittedCookie).ToArray();
         }

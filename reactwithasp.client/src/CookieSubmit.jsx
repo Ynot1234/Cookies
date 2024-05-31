@@ -5,13 +5,13 @@ import axios from 'axios'
 //eslint-disable-next-line react/prop-types
 function CookieSubmit({ setCookies }) {
 
-    const [post, setPost] = useState({
+    const [postdata, setPostdata] = useState({
         name: '',
         desc:''
     })
 
     const handleInput = (event) => {
-        setPost({ ...post, [event.target.name]: event.target.value })
+        setPostdata({ ...postdata, [event.target.name]: event.target.value })
     }
 
     const handleSubmit = async (event) => {
@@ -21,7 +21,7 @@ function CookieSubmit({ setCookies }) {
             method: 'post',
             url: '/cookie',
             headers: { 'Content-Type': 'application/json' },
-            data: post,
+            data: postdata,
             dataType: 'json'
         });
 
