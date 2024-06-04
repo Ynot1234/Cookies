@@ -15,22 +15,8 @@ namespace ReactWithASP.Server.Models
         {
             get 
             {
-             //   return _reactWithASPDbContext.Cookies.Include(c => c.Category);   //not using category
-
-             //  return _reactWithASPDbContext.Cookies;   // will return this when the DB exists
-
-                //returning this for now
-                return Enumerable.Range(1, 5).Select(index => new Cookie
-                {
-                    Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Id = index,
-                    name = Tools.Summaries[Random.Shared.Next(Tools.Summaries.Length)],
-                    desc = "sweet",
-                    Price = 1.99
-                })
-               .ToArray();
-            }
-        }
+              return _reactWithASPDbContext.Cookies;   // will return this when the DB exists
+}           }
 
         public Cookie? GetCookieById(int id)
         {

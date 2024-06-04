@@ -21,13 +21,11 @@ namespace ReactWithASP.Server.Controllers
         public IEnumerable<Cookie> PostCookie([FromBody] Cookie data)
 
         {
-            IEnumerable<Cookie> retval = Tools.Load();
-
+            IEnumerable<Cookie> retval = _cookieRepository.AllCookies;
 
             Cookie SubmittedCookie = new Cookie
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(retval.Count() + 1)),
-                Id = 6,
                 name = data.name,
                 desc = data.desc,
                 Price = 2.99
@@ -37,7 +35,6 @@ namespace ReactWithASP.Server.Controllers
         }
 
 
-        //currently using DI
         [HttpGet(Name = "GetCookie")]
         public IEnumerable<Cookie> Get()
         {
