@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ReactWithASP.Server.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ReactWithASP.Server.Controllers
 {
@@ -23,16 +24,16 @@ namespace ReactWithASP.Server.Controllers
         public IEnumerable<Cookie> PostCookie([FromBody] Cookie data)
 
         {
+              _cookieRepository.AddCookie(
+                    new()
+                    {
+                       Date = DateOnly.FromDateTime(DateTime.Now),
+                       name = data.name,
+                       desc = data.desc,
+                       Price = 2.99
+                    }
+              );
             
-            Cookie SubmittedCookie = new()
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now),
-                name = data.name,
-                desc = data.desc,
-                Price = 2.99
-            };
-
-            _cookieRepository.AddCookie(SubmittedCookie);
             return _cookieRepository.AllCookies;
         }
 
