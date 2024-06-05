@@ -16,12 +16,19 @@ namespace ReactWithASP.Server.Models
             get 
             {
               return _reactWithASPDbContext.Cookies;   // will return this when the DB exists
-}           }
+            }           
+        }
 
         public Cookie? GetCookieById(int id)
         {
             return _reactWithASPDbContext.Cookies.FirstOrDefault(p => p.Id == id);
 
+        }
+
+        public void AddCookie(Cookie cookie) 
+        {
+            _reactWithASPDbContext.Add(cookie);
+            _reactWithASPDbContext.SaveChanges();
         }
     }
 }

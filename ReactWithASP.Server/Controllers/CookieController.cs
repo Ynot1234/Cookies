@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ReactWithASP.Server.Models;
 
 namespace ReactWithASP.Server.Controllers
@@ -9,7 +11,7 @@ namespace ReactWithASP.Server.Controllers
     {
         private readonly ILogger<CookieController> _logger;
         private readonly ICookieRepository _cookieRepository;
-
+        
         public CookieController(ILogger<CookieController> logger, ICookieRepository cookieRepository)
         {
             _logger = logger;
@@ -21,25 +23,24 @@ namespace ReactWithASP.Server.Controllers
         public IEnumerable<Cookie> PostCookie([FromBody] Cookie data)
 
         {
-            IEnumerable<Cookie> retval = _cookieRepository.AllCookies;
-
-            Cookie SubmittedCookie = new Cookie
+            
+            Cookie SubmittedCookie = new()
             {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(retval.Count() + 1)),
+                Date = DateOnly.FromDateTime(DateTime.Now),
                 name = data.name,
                 desc = data.desc,
                 Price = 2.99
             };
 
-           return retval.Append(SubmittedCookie).ToArray();
+            _cookieRepository.AddCookie(SubmittedCookie);
+            return _cookieRepository.AllCookies;
         }
 
 
         [HttpGet(Name = "GetCookie")]
-        public IEnumerable<Cookie> Get()
+        public IEnumerable<Cookie> GetAllCookies()
         {
-            IEnumerable<Cookie> retval = _cookieRepository.AllCookies;
-            return retval;
+           return _cookieRepository.AllCookies;
         }
     }
 }

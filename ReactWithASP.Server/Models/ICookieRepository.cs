@@ -4,9 +4,11 @@
     {
        IEnumerable<Cookie> AllCookies { get; }
 
-    //   IEnumerable<Cookie> CookiesOfTheWeek { get; }
-
-       Cookie? GetCookieById(int CookieID);
     
+       Cookie? GetCookieById(int CookieID);
+
+       public void AddCookie(Cookie cookie);
+
+
     }
 }
