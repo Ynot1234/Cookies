@@ -42,9 +42,8 @@ namespace ReactWithASP.Server.Controllers
         public IEnumerable<Cookie> UpdateCookie([FromBody] Cookie data)
 
         {
-         
+            data.Date = DateOnly.FromDateTime(DateTime.Now);
             _cookieRepository.Update(data);
-
             return _cookieRepository.AllCookies;
         }
 
