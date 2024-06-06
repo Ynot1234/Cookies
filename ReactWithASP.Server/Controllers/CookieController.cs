@@ -7,7 +7,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace ReactWithASP.Server.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class CookieController : ControllerBase
     {
         private readonly ILogger<CookieController> _logger;
@@ -24,18 +24,31 @@ namespace ReactWithASP.Server.Controllers
         public IEnumerable<Cookie> PostCookie([FromBody] Cookie data)
 
         {
-              _cookieRepository.AddCookie(
-                    new()
-                    {
-                       Date = DateOnly.FromDateTime(DateTime.Now),
-                       name = data.name,
-                       desc = data.desc,
-                       Price = 2.99
-                    }
-              );
-            
+            _cookieRepository.AddCookie(
+                  new()
+                  {
+                      Date = DateOnly.FromDateTime(DateTime.Now),
+                      name = data.name,
+                      desc = data.desc,
+                      Price = 2.99
+                  }
+            );
+
             return _cookieRepository.AllCookies;
         }
+
+
+        [HttpPost(Name = "Update")]
+        public IEnumerable<Cookie> UpdateCookie([FromBody] Cookie data)
+
+        {
+         
+            _cookieRepository.Update(data);
+
+            return _cookieRepository.AllCookies;
+        }
+
+
 
 
         [HttpGet(Name = "GetCookie")]

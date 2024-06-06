@@ -19,7 +19,7 @@ function CookieSubmit({ setCookies }) {
 
         const response =    await axios({
             method: 'post',
-            url: '/cookie',
+            url: '/cookie/PostCookie',
             headers: { 'Content-Type': 'application/json' },
             data: postdata,
             dataType: 'json'

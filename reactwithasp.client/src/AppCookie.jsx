@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import CookieSubmit from './CookieSubmit'
+import UpdateCookie from './UpdateCookie'; 
+
 function AppCookie() {
     const [cookies, setCookies] = useState();
 
@@ -14,6 +16,7 @@ function AppCookie() {
 
             <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Date</th>
                     <th>Name</th>
                     <th>Desc</th>
@@ -22,7 +25,8 @@ function AppCookie() {
             </thead>
             <tbody>
                 {cookies.map(cookie =>
-                    <tr key={cookie.date}>
+                    <tr key={cookie.id}>
+                        <td>{cookie.id}</td>
                         <td>{cookie.date}</td>
                         <td>{cookie.name}</td>
                         <td>{cookie.desc}</td>
@@ -39,11 +43,12 @@ function AppCookie() {
             <h1 id="tabelLabel">AppCookie</h1>
             {contents}
             <CookieSubmit setCookies={setCookies} />
+            <UpdateCookie setCookies={setCookies} />
         </div>
     );
 
     async function populateCookieData() {
-        const response = await fetch('cookie');
+        const response = await fetch('cookie/GetAllCookies');
         const data = await response.json();
         setCookies(data);
     }

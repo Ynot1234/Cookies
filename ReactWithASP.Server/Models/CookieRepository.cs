@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Components.Server;
+using Microsoft.EntityFrameworkCore;
 
 namespace ReactWithASP.Server.Models
 {
@@ -28,6 +29,18 @@ namespace ReactWithASP.Server.Models
         {
             _reactWithASPDbContext.Add(cookie);
             _reactWithASPDbContext.SaveChanges();
+        }
+
+
+        public int Update<T>(T item) where T : Cookie
+        {
+            var cookie = GetCookieById(item.Id);
+            if (cookie == null) 
+            {
+                return 0;
+            }
+            _reactWithASPDbContext.Entry(cookie).CurrentValues.SetValues(item);
+            return _reactWithASPDbContext.SaveChanges();
         }
     }
 }
