@@ -45,7 +45,10 @@ namespace ReactWithASP.Server.Models
             {
                 var property = propertyEntry.Metadata;
                 var NewValue = property.GetGetter().GetClrValue(item);
-                if (NewValue == null || NewValue.ToString().Trim() == "") continue;
+                if (   NewValue == null 
+                    || NewValue.ToString().Trim() == ""
+                    || NewValue.ToString().Trim() == propertyEntry.CurrentValue 
+                   ) continue;
                 propertyEntry.CurrentValue = property.GetGetter().GetClrValue(item);
             }
 
