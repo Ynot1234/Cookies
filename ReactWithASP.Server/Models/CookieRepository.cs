@@ -32,6 +32,17 @@ namespace ReactWithASP.Server.Models
         }
 
 
+        public void UpdateProperties(DbContext context, object target, object source)
+        {
+            foreach (var propertyEntry in context.Entry(target).Properties)
+            {
+                var property = propertyEntry.Metadata;
+                // Skip shadow and key properties
+                if (property.IsShadowProperty() || (propertyEntry.EntityEntry.IsKeySet && property.IsKey())) continue;
+                propertyEntry.CurrentValue = property.GetGetter().GetClrValue(source);
+            }
+        }
+
         public int Update<T>(T item) where T : Cookie
         {
             var cookie = GetCookieById(item.Id);
@@ -39,8 +50,17 @@ namespace ReactWithASP.Server.Models
             {
                 return 0;
             }
-            _reactWithASPDbContext.Entry(cookie).CurrentValues.SetValues(item);
-            return _reactWithASPDbContext.SaveChanges();
+
+
+            foreach(var propertyEntry in _reactWithASPDbContext.Entry(cookie).Properties)
+            {
+                var property = propertyEntry.Metadata;
+                var NewValue = property.GetGetter().GetClrValue(item);
+                if (NewValue == null || NewValue.ToString().Trim() == "") continue;
+                propertyEntry.CurrentValue = property.GetGetter().GetClrValue(item);
+            }
+
+            return   _reactWithASPDbContext.SaveChanges();
         }
     }
 }
