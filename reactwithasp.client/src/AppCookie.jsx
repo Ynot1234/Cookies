@@ -1,49 +1,46 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import CookieSubmit from './CookieSubmit'
-import UpdateCookie from './UpdateCookie'; 
+
 
 function AppCookie() {
     const [cookies, setCookies] = useState();
 
-    useEffect(() => {
+    const [postdata, setPostdata] = useState({})
+
+    const handleInput = (event) => {
+        setPostdata({ ...postdata, [event.target.name]: event.target.value })
+    }
+
+
+   useEffect(() => {
         populateCookieData();
     }, []);
 
     const contents = cookies === undefined
         ? <p><em>Loading... Please refresh once the ASP.NET backend has started. </em></p>
-        : <table className="table table-striped" aria-labelledby="tabelLabel">
-                 <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Date</th>
-                    <th>Name</th>
-                    <th>Desc</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-                 <tbody>
+        : 
+       <div>
                 {cookies.map(cookie =>
-                    <tr key={cookie.id}>
-                        <td>{cookie.id}</td>
-                        <td>{cookie.date}</td>
-                        <td>{cookie.name}</td>
-                        <td>{cookie.desc}</td>
-                        <td>{cookie.price}</td>
-                        <td>  <button type="submit">Update</button></td>
-
-                    </tr>
+                   
+                    <form key={cookie.id}>
+                        <input type="text" name="id" onChange={(event) => handleInput(event, cookie.id)}  value={cookie.id}></input>
+                        <input type="text" name="name" onChange={(event) => handleInput(event, cookie.id)} value={cookie.name}></input>
+                        <input type="text" name="name" onChange={(event) => handleInput(event, cookie.id)}></input>
+                        <input type="text" name="desc" onChange={(event) => handleInput(event, cookie.id)} value={cookie.desc}></input>
+                        <input type="text" name="price"  onChange={(event) => handleInput(event, cookie.id)}  value={cookie.price}></input>
+                        <input type="submit"></input>
+                   </form>
                 )}
-            </tbody>
-        </table>;
+        </div>
+       ;
 
   
     return (
         <div>
-            <h1 id="tabelLabel">AppCookie</h1>
+            <h1 id="tabelLabel">Cookies</h1>
             {contents}
             <CookieSubmit setCookies={setCookies} />
-            <UpdateCookie setCookies={setCookies} />
         </div>
     );
 
