@@ -6,10 +6,17 @@ import CookieSubmit from './CookieSubmit'
 function AppCookie() {
     const [cookies, setCookies] = useState();
 
-    const [postdata, setPostdata] = useState({})
+    
 
-    const handleInput = (event) => {
-        setPostdata({ ...postdata, [event.target.name]: event.target.value })
+    const onChangeInput = (e, id) => {
+        const { name, value } = e.target
+       
+      
+        const editData = cookies.map((cookie) =>
+            cookie.id === id && name ? { ...cookie, [name]: value } : cookie
+        )
+
+        setCookies(editData)
     }
 
 
@@ -20,20 +27,48 @@ function AppCookie() {
     const contents = cookies === undefined
         ? <p><em>Loading... Please refresh once the ASP.NET backend has started. </em></p>
         : 
-       <div>
+        <table className="table table-striped" aria-labelledby="tabelLabel">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Desc</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
                 {cookies.map(cookie =>
-                   
-                    <form key={cookie.id}>
-                        <input type="text" name="id" onChange={(event) => handleInput(event, cookie.id)}  value={cookie.id}></input>
-                        <input type="text" name="name" onChange={(event) => handleInput(event, cookie.id)} value={cookie.name}></input>
-                        <input type="text" name="name" onChange={(event) => handleInput(event, cookie.id)}></input>
-                        <input type="text" name="desc" onChange={(event) => handleInput(event, cookie.id)} value={cookie.desc}></input>
-                        <input type="text" name="price"  onChange={(event) => handleInput(event, cookie.id)}  value={cookie.price}></input>
-                        <input type="submit"></input>
-                   </form>
+                    <tr key={cookie.id}>
+                        <td>{cookie.id}</td>
+                        <td>{cookie.date}</td>
+                        <td><input
+                            name="name"
+                            value={cookie.name}
+                            type="text"
+                            onChange={(e) => onChangeInput(e, cookie.id)}
+                            placeholder="Type Name" />
+                        </td>
+                        <td><input
+                            name="desc"
+                            value={cookie.desc}
+                            type="text"
+                            onChange={(e) => onChangeInput(e, cookie.id)}
+                            placeholder="Type Desc" /></td>
+                        <td><input
+                            name="price"
+                            value={cookie.price}
+                            type="text"
+                            onChange={(e) => onChangeInput(e, cookie.id)}
+                            placeholder="Type Price" /></td>
+                        <td>  <button type="submit">Update</button></td>
+
+                    </tr>
                 )}
-        </div>
-       ;
+            </tbody>
+        </table>;
+
+
 
   
     return (
