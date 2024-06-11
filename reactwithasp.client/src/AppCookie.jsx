@@ -13,8 +13,7 @@ function AppCookie() {
     const contents = cookies === undefined
         ? <p><em>Loading... Please refresh once the ASP.NET backend has started. </em></p>
         : <table className="table table-striped" aria-labelledby="tabelLabel">
-
-            <thead>
+                 <thead>
                 <tr>
                     <th>Id</th>
                     <th>Date</th>
@@ -23,7 +22,7 @@ function AppCookie() {
                     <th>Price</th>
                 </tr>
             </thead>
-            <tbody>
+                 <tbody>
                 {cookies.map(cookie =>
                     <tr key={cookie.id}>
                         <td>{cookie.id}</td>
@@ -31,6 +30,7 @@ function AppCookie() {
                         <td>{cookie.name}</td>
                         <td>{cookie.desc}</td>
                         <td>{cookie.price}</td>
+                        <td>  <button type="submit">Update</button></td>
 
                     </tr>
                 )}

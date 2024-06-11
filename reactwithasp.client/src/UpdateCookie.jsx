@@ -33,12 +33,9 @@ function UpdateCookie({ setCookies }) {
             <br />  <strong>Update Record</strong>
             <br /><br /><input type="text" name="id" placeholder="Id" onChange={handleInput} /><br />
             <input type="text" name="name" placeholder="Name" disabled={false}  onChange={handleInput} />
-           {/* <button type="submit">Name</button><br />*/}
             <input type="text" name="desc" placeholder="Desc" disabled={false}  onChange={handleInput} />
-         {/*   <button type="submit">Desc</button><br />*/}
             <input type="text" name="price" placeholder="Price" disabled={false} onChange={handleInput} />
-        {/*    <button type="submit">Price</button><br />*/}
-          <button type="submit">Update</button>
+            <button type="submit">Update</button>
       </form>
 
 

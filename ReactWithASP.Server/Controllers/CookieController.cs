@@ -38,7 +38,7 @@ namespace ReactWithASP.Server.Controllers
         }
 
 
-        [HttpPost(Name = "Update")]
+        [HttpPost]
         public IEnumerable<Cookie> UpdateCookie([FromBody] Cookie data)
 
         {
