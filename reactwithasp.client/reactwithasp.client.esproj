@@ -9,6 +9,9 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="src\assets\CookieTable.jsx" />
+    <None Remove="src\Cookie.jsx" />
     <None Remove="src\SubmitCookie.jsx" />
+    <None Remove="src\UpdateCookie.jsx" />
   </ItemGroup>
 </Project>
