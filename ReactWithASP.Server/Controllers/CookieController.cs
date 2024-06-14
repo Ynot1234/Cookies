@@ -30,7 +30,7 @@ namespace ReactWithASP.Server.Controllers
                       Date = DateOnly.FromDateTime(DateTime.Now),
                       name = data.name,
                       desc = data.desc,
-                      Price = 2.99
+                      Price = data.Price
                   }
             );
 
@@ -47,7 +47,12 @@ namespace ReactWithASP.Server.Controllers
             return _cookieRepository.AllCookies;
         }
 
-
+        [HttpPost]
+        public IEnumerable<Cookie> DeleteCookie([FromBody] Cookie data)
+        {
+            _cookieRepository.DeleteCookie(data.Id);
+            return _cookieRepository.AllCookies;
+        }
 
 
         [HttpGet(Name = "GetCookie")]

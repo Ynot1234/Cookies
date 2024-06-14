@@ -7,7 +7,8 @@ function CookieSubmit({ setCookies }) {
 
     const [postdata, setPostdata] = useState({
         name: '',
-        desc:''
+        desc: '',
+        price: ''
     })
 
     const handleInput = (event) => {
@@ -32,6 +33,7 @@ function CookieSubmit({ setCookies }) {
         <form onSubmit={handleSubmit}>
             <input type="text" name="name" placeholder="Name"  onChange={handleInput} />
             <input type="text" name="desc" placeholder="Desc" onChange={handleInput} />
+            <input type="text" name="price" placeholder="Price" onChange={handleInput} />
             <button type="submit">Submit</button>
         </form>
     );

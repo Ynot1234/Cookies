@@ -4,7 +4,7 @@
     {
        IEnumerable<Cookie> AllCookies { get; }
 
-    
+       public void DeleteCookie(int id);
        Cookie? GetCookieById(int CookieID);
 
        public void AddCookie(Cookie cookie);

@@ -35,7 +35,7 @@ function AppCookie() {
         setCookies(editData)
     }
 
-    const handleClick = async (event) => {
+    const handleClickUpdate = async (event) => {
        
         const id = event.cookie.id
       
@@ -66,6 +66,28 @@ function AppCookie() {
         setCookies(response.data)
 
     }
+
+
+
+
+
+    const handleClickDelete = async (event) => {
+
+        
+      
+     const response = await axios({
+            method: 'post',
+            url: '/cookie/DeleteCookie',
+            headers: { 'Content-Type': 'application/json' },
+            data: event.cookie,
+            dataType: 'json'
+        });
+
+        setCookies(response.data)
+
+    }
+
+    
 
    useEffect(() => {
         populateCookieData();
@@ -115,7 +137,8 @@ function AppCookie() {
                             placeholder="Type Price"
                             className={changed.price[cookie.id] ? hl : ""}/>
                         </td>
-                        <td>  <button type="submit" onClick={() => handleClick({cookie})}>Update</button></td>
+                        <td>  <button type="submit" onClick={() => handleClickUpdate({ cookie })}>Update</button></td>
+                        <td>  <button type="submit" onClick={() => handleClickDelete({ cookie })}>Delete</button></td>
                         
                     </tr>
                 )}

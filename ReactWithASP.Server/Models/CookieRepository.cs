@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Server;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace ReactWithASP.Server.Models
 {
@@ -24,6 +25,14 @@ namespace ReactWithASP.Server.Models
         {
             return _reactWithASPDbContext.Cookies.FirstOrDefault(p => p.Id == id);
         }
+
+        public void DeleteCookie(int id)
+        {
+             Cookie cookie = new Cookie() { Id = id };
+            _reactWithASPDbContext.Cookies.Remove(cookie);
+            _reactWithASPDbContext.SaveChanges();
+        }
+
 
         public void AddCookie(Cookie cookie) 
         {
