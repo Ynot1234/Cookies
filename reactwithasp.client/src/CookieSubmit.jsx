@@ -69,8 +69,8 @@ function CookieSubmit({ setCookies }) {
             <input type="text" name="desc" placeholder="Desc" onChange={handleInput} />
             <input type="text" name="price" placeholder="Price" onChange={handleInput}  />
             <button type="submit" name="submit"  >Submit</button>
-
-            <div className="invalid-feedback">{errorMessage}</div>
+            <br></br>
+            <div className="error-message">{errorMessage}</div>
         </form>
     );
 }
