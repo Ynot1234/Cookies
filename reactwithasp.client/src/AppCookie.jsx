@@ -68,13 +68,8 @@ function AppCookie() {
     }
 
 
-
-
-
     const handleClickDelete = async (event) => {
 
-        
-      
      const response = await axios({
             method: 'post',
             url: '/cookie/DeleteCookie',
@@ -84,10 +79,7 @@ function AppCookie() {
         });
 
         setCookies(response.data)
-
     }
-
-    
 
    useEffect(() => {
         populateCookieData();
@@ -150,7 +142,6 @@ function AppCookie() {
   
     return (
         <div>
-            <h1 id="tabelLabel">Cookies</h1>
             {contents}
             <CookieSubmit setCookies={setCookies} />
         </div>
