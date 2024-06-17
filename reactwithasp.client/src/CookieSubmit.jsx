@@ -1,9 +1,6 @@
 ﻿import { useState } from 'react';
 import axios from 'axios'
 
-
-const hl = "c-validation";
-
 //eslint-disable-next-line react/prop-types
 function CookieSubmit({ setCookies }) {
 
@@ -15,15 +12,7 @@ function CookieSubmit({ setCookies }) {
 
 
     const [errorMessage, setErrorMessage] = useState('');
-    //const [className, setClassName] = useState('');
-   
-    //const disableBtnProps = {};
-    //if (className === 'is-invalid') {
-    //    disableBtnProps.disabled = true;
-    //} else {
-    //    disableBtnProps.disabled = false;
-    //}
-
+    
     const handleInput = (event) => {
 
         event.preventDefault()
@@ -60,14 +49,21 @@ function CookieSubmit({ setCookies }) {
             });
 
             setCookies(response.data)
+
+           
+            setPostdata({
+                name: '',
+                desc: '',
+                price: ''
+            });
         }
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" name="name" placeholder="Name"  onChange={handleInput} />
-            <input type="text" name="desc" placeholder="Desc" onChange={handleInput} />
-            <input type="text" name="price" placeholder="Price" onChange={handleInput}  />
+            <input type="text" name="name" placeholder="Name" value={postdata.name}  onChange={handleInput} />
+            <input type="text" name="desc" placeholder="Desc" value={postdata.desc}  onChange={handleInput} />
+            <input type="text" name="price" placeholder="Price" value={postdata.price}  onChange={handleInput}  />
             <button type="submit" name="submit"  >Submit</button>
             <br></br>
             <div className="error-message">{errorMessage}</div>
