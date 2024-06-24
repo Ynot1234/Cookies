@@ -14,4 +14,7 @@
     <None Remove="src\SubmitCookie.jsx" />
     <None Remove="src\UpdateCookie.jsx" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\helper\" />
+  </ItemGroup>
 </Project>

@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import CookieSubmit from './CookieSubmit'
 import axios from 'axios'
-
+import Validation from './helper/Validation';
+ 
 
 const hl = "highlighted-input";
 
@@ -15,7 +16,8 @@ function AppCookie() {
         desc: {},
         price: {},
     });
-   
+
+    const [ErrorMessage, setErrorMessage] = useState('');
     
     const onChangeInput = (e,column,  id) => {
         const { name, value } = e.target
@@ -37,34 +39,44 @@ function AppCookie() {
 
     const handleClickUpdate = async (event) => {
        
-        const id = event.cookie.id
-      
-        setChanged((allChanged) => ({
-            "name": {
-                ...allChanged["name"],
-                [id]: false,
-            },
-            "desc": {
-                ...allChanged["desc"],
-                [id]: false,
-            },
-            "price": {
-                ...allChanged["price"],
-                [id]: false,
-            }
+        const msg = Validation(event.cookie)
+        setErrorMessage(msg)
 
-        }));
+        if (msg.length === 0)
+        {
+           
 
-        const response = await axios({
-            method: 'post',
-            url: '/cookie/UpdateCookie',
-            headers: { 'Content-Type': 'application/json' },
-            data: event.cookie,
-            dataType: 'json'
-        });
+            const id = event.cookie.id
 
-        setCookies(response.data)
+            setChanged((allChanged) => ({
+                "name": {
+                    ...allChanged["name"],
+                    [id]: false,
+                },
+                "desc": {
+                    ...allChanged["desc"],
+                    [id]: false,
+                },
+                "price": {
+                    ...allChanged["price"],
+                    [id]: false,
+                }
 
+            }));
+
+            const response = await axios({
+                method: 'post',
+                url: '/cookie/UpdateCookie',
+                headers: { 'Content-Type': 'application/json' },
+                data: event.cookie,
+                dataType: 'json'
+            });
+
+            setCookies(response.data)
+
+        }
+
+        
     }
 
 
@@ -131,11 +143,12 @@ function AppCookie() {
                         </td>
                         <td>  <button type="submit" onClick={() => handleClickUpdate({ cookie })}>Update</button></td>
                         <td>  <button type="submit" onClick={() => handleClickDelete({ cookie })}>Delete</button></td>
-                        
+                      
                     </tr>
                 )}
             </tbody>
         </table>;
+   
 
 
 
@@ -143,7 +156,10 @@ function AppCookie() {
     return (
         <div>
             {contents}
-            <CookieSubmit setCookies={setCookies} />
+            <CookieSubmit
+                setCookies={setCookies}
+                setErrorMessage={(error) => setErrorMessage(error)}
+                ErrorMessage={ErrorMessage} />
         </div>
     );
 

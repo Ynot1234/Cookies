@@ -1,8 +1,11 @@
-﻿import { useState } from 'react';
+﻿/* eslint-disable react/prop-types */
+import { useState } from 'react';
 import axios from 'axios'
+import Validation from './helper/Validation';
+
 
 //eslint-disable-next-line react/prop-types
-function CookieSubmit({ setCookies }) {
+function CookieSubmit({ setCookies, setErrorMessage, ErrorMessage }) {
 
     const [postdata, setPostdata] = useState({
         name: '',
@@ -11,8 +14,6 @@ function CookieSubmit({ setCookies }) {
     })
 
 
-    const [errorMessage, setErrorMessage] = useState('');
-    
     const handleInput = (event) => {
 
         event.preventDefault()
@@ -22,24 +23,11 @@ function CookieSubmit({ setCookies }) {
     const handleSubmit = async (event) => {
 
         event.preventDefault();
-        const IsNotValidNum = Number.isNaN(Number(postdata.price.trim()))
-
-        if (postdata.name.trim() === "") {
-            setErrorMessage('Please enter a name');
-
-        }
-        else if (postdata.desc.trim() === "") {
-            setErrorMessage('Please enter a desc');
-
-        }
-        else if (postdata.price.trim() === "" || IsNotValidNum) {
-            setErrorMessage('Please enter a valid number');
-
-        }
-        else {
-
-            setErrorMessage('');
-
+        const msg = Validation(postdata)
+        setErrorMessage(msg)
+        
+        if (msg.length === 0)
+        {
             const response = await axios({
                 method: 'post',
                 url: '/cookie/PostCookie',
@@ -50,7 +38,6 @@ function CookieSubmit({ setCookies }) {
 
             setCookies(response.data)
 
-           
             setPostdata({
                 name: '',
                 desc: '',
@@ -64,9 +51,11 @@ function CookieSubmit({ setCookies }) {
             <input type="text" name="name" placeholder="Name" value={postdata.name}  onChange={handleInput} />
             <input type="text" name="desc" placeholder="Desc" value={postdata.desc}  onChange={handleInput} />
             <input type="text" name="price" placeholder="Price" value={postdata.price}  onChange={handleInput}  />
-            <button type="submit" name="submit"  >Submit</button>
+            <button type="submit" name="submit">Submit</button>
             <br></br>
-            <div className="error-message">{errorMessage}</div>
+            <div className= "error-message">{ErrorMessage}</div>
+
+            
         </form>
     );
 }
